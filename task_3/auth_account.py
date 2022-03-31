@@ -9,10 +9,6 @@ def create_pro():
         auth.authorizor.add_permission("mid")
         auth.authorizor.add_permission("pro")
         auth.authorizor.permit_user("pro", "pro_user")
-        auth.authenticator.add_user("n", "npassword")
-        auth.authenticator.add_user("t", "tpassword")
-        auth.authorizor.permit_user("basic", "n")
-        auth.authorizor.permit_user("basic", "t")
     except auth.UsernameAlreadyExists:
         print('', end='')
 

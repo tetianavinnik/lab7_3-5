@@ -1,8 +1,5 @@
-from ast import Break
 import sys
-# from auth_account import Editor
 from notebook import Notebook, Note
-# from auth_account import Editor
 
 
 class Menu:
@@ -53,9 +50,7 @@ class Menu:
             print('Do you want to ask for permission? (yes/no)')
             choice = input('>')
             if choice == 'no':
-                from auth_account import Editor
-                Editor().menu()
-                # Menu().run(user)
+                Menu().run(user)
             elif choice == 'yes':
                 user.ask_perm(permission)
                 break
@@ -72,7 +67,10 @@ class Menu:
             action = self.choices.get(choice)
             if action:
                 if self.get_permission(user) in self.permitions[choice]:
-                    action()
+                    if action == self.back:
+                        action(user)
+                    else:
+                        action()
                 else:
                     self.ask_permission(user, self.permitions[choice][0])
             else:
@@ -127,9 +125,9 @@ class Menu:
         raise SystemExit()
 
 
-    def back(self):
+    def back(self, user):
         """
         Back to the main menu.
         """
         from auth_account import Editor
-        Editor().menu()
+        Editor(user).menu()

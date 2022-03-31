@@ -15,8 +15,12 @@ def create_pro():
 
 MESSAGE = []
 class Editor:
-    def __init__(self):
-        self.username = None
+    def __init__(self, user=None):
+        self.user = user
+        if user != None:
+            self.username = self.user.username
+        else:
+            self.username = None
         self.menu_map = {
         "login": self.login,
         "notebook": self.notebook,
@@ -82,7 +86,6 @@ class Editor:
                 print("Sorry, incorrect password")
             else:
                 self.username = username
-                # Menu().run(self)
 
 
     def is_permitted(self, permission):
@@ -108,8 +111,8 @@ class Editor:
         ASk pro user for permission.
         """
         print('Log in as a pro user')
-        MESSAGE.append((self, permission))
-        Editor().menu()
+        MESSAGE.append((self.user, permission))
+        Editor(self).menu()
     
 
     def get_perm(self):
@@ -132,7 +135,7 @@ class Editor:
             if auth.authenticator.is_logged_in(i):
                 return Menu().run(self)
         print('You should login')
-        return Editor().menu()
+        return Editor(self).menu()
 
 
     def quit(self):
@@ -142,7 +145,7 @@ class Editor:
         raise SystemExit()
 
 
-    def menu(self):
+    def menu(self, user=None):
         try:
             answer = ""
             while True:
@@ -160,11 +163,9 @@ Please enter a command:
                     print("{} is not a valid option".format(
                         answer))
                 else:
-                    # if func == self.login:
-                    #     func(MESSAGE)
-                    # else:
                     func()
         finally:
             print("")
 create_pro()
-Editor().menu()
+if __name__ == "__main__":
+    Editor().menu()

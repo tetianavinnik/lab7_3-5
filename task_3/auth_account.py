@@ -12,7 +12,7 @@ def create_pro():
     except auth.UsernameAlreadyExists:
         print('', end='')
 
-global MESSAGE
+
 MESSAGE = []
 class Editor:
     def __init__(self):

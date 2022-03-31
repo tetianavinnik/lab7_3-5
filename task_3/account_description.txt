@@ -1,0 +1,18 @@
+Notebook realisation
+
+
+Permissions:
+
+basic - can search for memo and view them
+mid - can also create memo
+pro - can also change memories
+
+Exceptions:
+
+UsernameAlreadyExists - if there already is the user with same UsernameAlreadyExists
+PasswordTooShort - if password contains less than 6 characters
+InvalidUsername - when user want to login, but there is no such UsernameAlreadyExists
+InvalidPassword - (login) if password is incorrect
+PermissionError - if such permission does not exist
+NotPermittedError - if user does not have needed permission
+NotLoggedInError - (check permission) if user did not logined
